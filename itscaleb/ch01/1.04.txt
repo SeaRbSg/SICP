@@ -1,0 +1,2 @@
+The if statement will return the correct operation to use on the formal parameters.
+The result will be the sum of 'a' and the absolute value of 'b'.

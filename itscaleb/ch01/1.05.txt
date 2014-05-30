@@ -1,0 +1,9 @@
+calling the procedure (p) will cause an infinate loop.
+
+Because applicative order evaluation evaluates the arguments first and then applies,
+
+`(test 0 (p))` will never terminate since it will evaluate `(p)` when the procedure
+is called.
+
+Normal order evaluation will finish the evaluation of `(test 0 (p))` with the result 
+of 0, because the execution path will not read the evaluation of `(p)`.

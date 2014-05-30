@@ -1,0 +1,2 @@
+I think what happens is that the procedure will never finish if it is applicative order evaluation.
+The predicate, 'then-clause' and the 'else-clause' in the new-if procedure will be evaluated no matter what the value of the predicate is.
