@@ -1,0 +1,23 @@
+(+ 4 5)
+(inc (+ 3 5))
+(inc (inc (+ 2 5)))
+(inc (inc (inc (+ 1 5))))
+(inc (inc (inc (inc (+ 0 5)))))
+(inc (inc (inc (inc (5)))))
+(inc (inc (inc (6))))
+(inc (inc (7)))
+(inc (8))
+9
+
+This procedure is recursive. One indicator is the shape. It expands and then contracts.
+Another indicator is that if the procedure is paused, you cannot get a complete picture of the state of the procedure.
+
+(+ 4 5)
+(+ 3 6)
+(+ 2 7)
+(+ 1 8)
+(+ 0 9)
+9
+
+This procedure is iterative. The state of the procedure can be summarized by a set of state variables.
+The shape of the procedure also indicates it is iterative.
