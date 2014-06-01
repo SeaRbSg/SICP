@@ -1,0 +1,8 @@
+When Alyssa implements (if) using (cond), she changes it from a special form
+that uses normal order to a procedure that uses applicative order.
+
+The iterator is evaluated every time, which evaluates the iterator
+recursively forever.
+
+Note to SICP authors: why are the answers to so many exercises "it locks up
+my fscking computer"?

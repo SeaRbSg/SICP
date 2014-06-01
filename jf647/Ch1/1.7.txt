@@ -1,0 +1,14 @@
+For very small numbers, the good-enough? procedure in the book will
+frequently get results from sqrt-iter smaller than 0.001:
+
+For example, calculating the root of 0.001 works, but the root of 0.0001
+doesn't, because good-enough? returns true before it should due to the
+small difference between the squared guess.
+
+root of 0.001: 0.04124542607499115
+solution squared: 0.0017011851721075596
+root of 0.0001: 0.03230844833048122
+solution squared: 0.0010438358335233748
+
+For very large numbers, squaring the guess will overflow the integer limit
+(32 or 64 bit), which will result in incorrect results.

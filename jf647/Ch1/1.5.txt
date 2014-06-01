@@ -1,0 +1,15 @@
+(define (p) (p))
+
+(define (test x y)
+  (if (= x 0)
+    0
+    y)
+  )
+
+(display (test 0 (p))) (newline)
+
+Applicative order evaluation would loop forever, because it would try to evaluate
+p as itself even though it was never required
+
+Normal order evaluation would test x and find it to be 0, so it would
+return 0 without ever having to evaluate y
