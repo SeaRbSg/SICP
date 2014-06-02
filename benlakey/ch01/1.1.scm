@@ -35,6 +35,84 @@
 ; 1.1.5
 ; Procedure application
 ; 
-; Applicative order = Operands evaluated immediately, first
-; Normal order      = Operators evaluated until primitives are left at the leaf nodes
+; Applicative order = Operands evaluated immediately, first. Reduce primitives first, then proceed.
+; Normal order      = Operators evaluated until primitives are left at the leaf nodes. Reduce last.
+; 
+; Both orders yield the same results. LISP uses applicative order evaluation for efficiency reasons (expressions dont have to be evaluated multiple times).
+
+
+;;; Applicative:
+;
+; (sum-of-triples (* 2 3) (* 2 4))
+; 
+; (sum-of-triples 6 8)
+; 
+; (+ (triple 6) (triple 8))
+; 
+; (+ (* 3 6) (* 3 8))
+; 
+; (+ 18 24)
+; 
+; 42
+
+;;; Normal:
+;
+; (sum-of-triples (* 2 3) (* 2 4))
+;
+; (+ (triple (* 2 3)) (triple (* 2 4)))
+;
+; (+ (* 3 (* 2 3)) (* 3 (* 2 4))
+;
+; (+ (* 3 6) (* 3 8))
+;
+; (+ 18 24)
+;
+; 42
+
+
+; 1.1.6
+; conditional expressions / predicates
+
+(define (is-bens-age x)
+  (cond ((= x 29) #t)
+        ((< x 29) #f)
+        ((> x 29) #f)))
+
+(is-bens-age 29)
+
+; else
+
+(define (is-bens-age x)
+  (cond ((= x 29) #t)
+        (else #f)))
+
+(is-bens-age 42)
+
+; In other words 'else' is essentially just a predicate that returns true. Any true expression can be substituted for else. Therefor this is identical to the previous:
+
+(define (is-bens-age x)
+  (cond ((= x 29) #t)
+        (#t #f)))
+
+(is-bens-age 33)
+
+; if
+(define (is-bens-age x)
+  (if (= x 29)
+    #t
+    #f))
+
+(is-bens-age 29)
+
+; logical operators
+
+; Operates as typically seen in other languages, including evaluation rules (any false, short circuit). Thus this is a special form.
+(and (= 2 2) (= 1 3))
+
+; Same here; same as typical in other langs, including eval rules. (any true, short circuit). Special form.
+(or (= 2 2) (= 1 3))
+
+; negation is not a special form; always evaluated.
+(not (= 2 3))  ;true
+
 
