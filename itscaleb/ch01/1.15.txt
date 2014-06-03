@@ -1,0 +1,4 @@
+a.) The procedure is applied 5 times because sine gets recusively called 5 times, and the result of that is a chain of deferred evaluations of p.
+
+b.) The space used by the sine procedure is in the form of the deferred recursive procedure calls. The growth in dependent ond the input 'angle', which gets devided by 3 on each recursive call. So 'angle' can increase 3x for each recursive call.  So the order of growth of space is O(log n).
+With the same reasoning above, the growth of the number of steps is also O(log n). Another constant set of steps is needed when 'angle' is increased 3x.

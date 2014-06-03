@@ -1,0 +1,10 @@
+It looks like the tallest the recursive tree can get is equal to the amount. So the growth of space grows linearly with the amount.
+
+The growth of the number of steps used by the process is determined by kinds-of-coins. If you look at the branch of the tree where kinds-of-coins == 1, the number of steps grows linearly with the amount. For each additional increase in kinds of coins, the tree doubles.
+
+kinds-of-coins = 1, O(amount)
+kinds-of-coins = 2, O(amount^2)
+kinds-of-coins = 3, O(amount^3)
+...
+
+
