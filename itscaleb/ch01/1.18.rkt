@@ -2,17 +2,21 @@
 (require rackunit)
 
 (define (my* x y)
-  (cond
-    ((= y 1) x)
+  (mult-itr x y 0))
+
+(define (mult-itr x y a)
+  (cond 
+    ((= y 1) (+ x a))
     ((even? y)
-     (double (my* x (halve y))))
+     (mult-itr (double x) (halve y) a))
     (else
-     (+ x (my* x (- y 1))))))
+     (mult-itr x (- y 1) (+ x a)))))
 
-(define (double x) (+ x x))
-(define (halve x) (/ x 2))
+(define (double a) (+ a a))
 
-(check-equal? 4 (my* 2 2))
-(check-equal? 8 (my* 2 4))
-(check-equal? 9 (my* 3 3))
-(check-equal? 18 (my* 6 3))
+(define (halve a) (/ a 2))
+
+(check-equal? (my* 2 2) 4)
+(check-equal? (my* 2 4) 8)
+(check-equal? (my* 3 3) 9)
+(check-equal? (my* 6 4) 24)
