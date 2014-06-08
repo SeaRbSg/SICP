@@ -6,7 +6,7 @@
 
 (define (mult-itr x y a)
   (cond 
-    ((= y 1) (+ x a))
+    ((= y 0) a)
     ((even? y)
      (mult-itr (double x) (halve y) a))
     (else
@@ -16,6 +16,7 @@
 
 (define (halve a) (/ a 2))
 
+(check-equal? (my* 3 0) 0)
 (check-equal? (my* 2 2) 4)
 (check-equal? (my* 2 4) 8)
 (check-equal? (my* 3 3) 9)

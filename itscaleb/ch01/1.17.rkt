@@ -3,6 +3,7 @@
 
 (define (my* x y)
   (cond
+    ((= y 0) 0)
     ((= y 1) x)
     ((even? y)
      (double (my* x (halve y))))
@@ -12,6 +13,7 @@
 (define (double x) (+ x x))
 (define (halve x) (/ x 2))
 
+(check-equal? 0 (my* 3 0))
 (check-equal? 4 (my* 2 2))
 (check-equal? 8 (my* 2 4))
 (check-equal? 9 (my* 3 3))
