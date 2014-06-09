@@ -1,0 +1,2 @@
+O(n) space, just like the Fibonacci
+O(n**m) steps, where m is the number of types of coins (so 5 in the default case)
