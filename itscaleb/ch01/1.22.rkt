@@ -1,5 +1,30 @@
 #lang racket
-; I had to modify some of the code from the book to work. No major changes though.
+(require plot)
+; I had to modify some of the code from the book to work, and also to only print the primes. No major changes though.
+
+; 3 smallest primes larger than 1000:
+;1009 - .1169 ms
+;1013 - .0368 ms
+;1019 - .0300 ms
+
+; 3 smallest primes larger than 10000:
+; 10007 - .1220 ms
+; 10009 - .0471 ms
+; 10037 - .0410 ms
+
+
+; 3 smallest primes larger than 100000;
+; 100003 - .1279 ms
+; 100019 - .0952 ms
+; 100043 - .0869 ms
+
+; 3 smallest primes larger than 1000000;
+; 1000003 - .23779296875
+; 1000033 - .197998046875
+; 1000037 - .18896484375
+
+; Ignoring the first timer in each group (seems way off), we are actually getting better than sqrt n growth.
+; But the growth does seem to grow in proportion to n, something around 1/5 n.
 
 (define (search-for-primes min max)
   (cond ((and (odd? min) (< min max))
