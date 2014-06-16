@@ -1,30 +1,31 @@
-#lang racket
-(require plot)
+#lang planet neil/sicp
 ; I had to modify some of the code from the book to work, and also to only print the primes. No major changes though.
 
-; 3 smallest primes larger than 1000:
-;1009 - .1169 ms
-;1013 - .0368 ms
-;1019 - .0300 ms
+;1000003 *** 186
+;1000033 *** 198
+;1000037 *** 186
 
-; 3 smallest primes larger than 10000:
-; 10007 - .1220 ms
-; 10009 - .0471 ms
-; 10037 - .0410 ms
+;10000019 *** 545
+;10000079 *** 547
+;10000103 *** 553
 
+;100000007 *** 1732
+;100000037 *** 1715
+;100000039 *** 1689
 
-; 3 smallest primes larger than 100000;
-; 100003 - .1279 ms
-; 100019 - .0952 ms
-; 100043 - .0869 ms
+;1000000007 *** 5323
+;1000000009 *** 5379
+;1000000021 *** 5364
 
-; 3 smallest primes larger than 1000000;
-; 1000003 - .23779296875
-; 1000033 - .197998046875
-; 1000037 - .18896484375
+;10000000019 *** 17304
+;10000000033 *** 17457
+;10000000061 *** 19451
 
-; Ignoring the first timer in each group (seems way off), we are actually getting better than sqrt n growth.
-; But the growth does seem to grow in proportion to n, something around 1/5 n.
+; To get better results, I ended up trying larger numbers, and also taking a wider range 
+; around the numbers we were looking for because the first few results were off. I also
+; installed an SICP package for DrRacket which had a timer like in the book.
+
+; After these changes, we are getting growth close to sqrt(n).
 
 (define (search-for-primes min max)
   (cond ((and (odd? min) (< min max))
@@ -37,8 +38,7 @@
   (not (= (remainder a 2) 0)))
   
 (define (timed-prime-test n)
-  (define now (runtime))
-  (start-prime-test n now))
+  (start-prime-test n (runtime)))
 
 (define (start-prime-test n start-time)
   (cond ((prime? n)
@@ -65,6 +65,3 @@
 
 (define (divides? a b)
   (= (remainder b a) 0))
-  
-; current-inexact-milliseconds seems to be giving me the best numbers.
-(define (runtime) (current-inexact-milliseconds))
