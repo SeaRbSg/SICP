@@ -1,0 +1,13 @@
+Given the following procedure:
+
+(define (f g)
+  (g 2))
+
+; What happens if we evaluate (f f)?
+(f f)
+
+; substitute f for g
+(f 2)
+
+; substitute 2 for g. This will cause an error since 2 is not a procedure.
+(2 2)
