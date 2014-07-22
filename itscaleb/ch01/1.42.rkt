@@ -10,3 +10,5 @@
 (check-equal?
  ((compose square inc) 6)
  49)
+
+(provide compose)
