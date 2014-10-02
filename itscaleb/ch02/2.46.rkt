@@ -35,3 +35,4 @@
 (check-equal? (sub-vect (make-vect 4 6)
                         (make-vect 2 4))
               (make-vect 2 2))
+(provide make-vect)
