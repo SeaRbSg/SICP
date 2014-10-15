@@ -14,6 +14,12 @@
                         (deriv (multiplicand exp) var))
           (make-product (multiplicand exp)
                         (deriv (multiplier exp) var)))]
+        [(exponentiation? exp)
+         (make-product
+          (make-product (exponent exp)
+                        (make-exponentiation (base exp)
+                                             (- (exponent exp) 1)))
+          (deriv (base exp) var))]
         [else
          (error "unknown expresion type -- DERIV" exp)]))
 
@@ -42,6 +48,12 @@
         [else
          (list '* m1 m2)]))
 
+(define (make-exponentiation base exponent)
+  (cond [(=number? exponent 0) 1]
+        [(=number? exponent 1) base]
+        [else
+         (list '** base exponent)]))
+
 (define (sum? exp)
   (and (pair? exp)
        (eq? (car exp) '+)))
@@ -62,9 +74,16 @@
   (and (number? exp)
        (= exp num)))
 
+(define (exponentiation? exp)
+  (and (pair? exp)
+       (eq? (car exp) '**)))
 
+(define (base exp) (cadr exp))
 
+(define (exponent exp) (caddr exp))
 
+(check-equal? (deriv '(** x 2) 'x)
+              '(* 2 x))
 
-
-
+(check-equal? (deriv '(** x 3) 'x)
+              '(* 3 (** x 2)))
