@@ -1,0 +1,13 @@
+
+a.) Partial-tree is a recursive procedure that takes a list of elements, calls itself recursively with the left half of the list, takes the center element (the root node), and calls itself recursively with the right half of the list. It then takes the center item and the left and right trees built recursively, and builts a tree out of them.
+
+This is the tree built from the list (1 3 5 7 9 11):
+
+
+   5
+  /  \
+ 1     9
+  \   / \
+   3 7   11
+
+b.) The running time of partial-tree is O(n). For each element in the list, it does several constant time operations.
