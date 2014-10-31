@@ -69,6 +69,33 @@
         [else 
          (element-of-set? x (cdr set))])) 
 
+(define (adjoin-set x set)
+  (cond ((null? set) (list x))
+        ((< (weight x) (weight (car set))) (cons x set))
+        (else (cons (car set)
+                    (adjoin-set x (cdr set))))))
+
+(define (make-leaf-set pairs)
+  (if (null? pairs)
+      '()
+      (let ((pair (car pairs)))
+        (adjoin-set (make-leaf (car pair)    ; symbol
+                               (cadr pair))  ; frequency
+                    (make-leaf-set (cdr pairs))))))
+
+(define (successive-merge leaf-set)
+  (cond [(null? (cdr leaf-set)) 
+         (car leaf-set)]
+        [else
+         (successive-merge 
+          (adjoin-set (make-code-tree 
+                       (car leaf-set) 
+                       (cadr leaf-set)) 
+                      (cddr leaf-set)))]))
+
+(define (generate-huffman-tree pairs)
+  (successive-merge (make-leaf-set pairs)))
+
 (provide make-leaf
          leaf?
          symbol-leaf
@@ -79,4 +106,5 @@
          symbols
          weight
          encode
-         decode)
+         decode
+         generate-huffman-tree)
