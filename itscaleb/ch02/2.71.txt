@@ -1,0 +1,16 @@
+This is what the tree looks like for N = 5:
+
+    	  	       		  '(ABCDE) 31
+				   /     \
+			    '(ABCD) 15    (E 16)
+			    /      \
+ 			'(ABC) 7   (D 8)
+			/    \
+		   '(AB) 3    (C 4)
+		   /    \
+		(A 1)  (B 2)
+
+The depth of the tree is n-1, which is how many bits are required for the
+symbols at the bottom of the tree (the least frequent symbols).
+
+The most frequently used symbol at the top of the tree only requires 1 bit.
