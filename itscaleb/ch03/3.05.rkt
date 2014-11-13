@@ -9,7 +9,7 @@
   (lambda ()
     (let ((x (random-in-range x1 x2))
           (y (random-in-range y1 y2)))
-      (point-in-circle? x y))))
+      (p x y))))
 
 (define (random-in-range low high)
             (let ((range (- high low)))
@@ -30,7 +30,7 @@
         (expt (- y 7) 2))
      (expt 3 2)))
 
-(define pi-estimate (/ (estimate-integral P 2 8 4 10 10000) 9))
+(define pi-estimate (/ (estimate-integral point-in-circle? 2 8 4 10 10000) 9))
 
 ; only doing this to avoid printing out a rational number
 (/ pi-estimate 1.0)
