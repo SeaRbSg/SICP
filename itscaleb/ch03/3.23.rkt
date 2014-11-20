@@ -30,3 +30,7 @@
            (set-cdr! (rear-ptr deque) new-pair)
            (set-rear-ptr! deque new-pair)
            deque))))
+
+(define (front-delete-deque! deque)
+  (set-front-ptr! deque (cdr (front-ptr deque)))
+  deque)
