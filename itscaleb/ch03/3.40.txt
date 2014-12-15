@@ -1,0 +1,13 @@
+(define x 10)
+
+(parallel-execute (lambda () (set! x (* x x)))
+		  (lambda () (set! x (* x x x))))
+
+
+x is set to 100, and then set to (* x x x): 100 * 100 * 100 = 1000000
+x is set to 100 after x is accessed once: 10 * 100 * 100 = 100000
+x is set to 100 after x is accessed twice: 10 * 10 * 100 = 10000
+x is set to 1000 after accessing x 3 times while it is still 10, and after x is assigned to 100 but overwriting it: 1000
+x is set to 100 after accessing x twice while it is still 10, and after x is assigned to 1000 but overwriting it: 100
+
+If the procedures are serialized, only 1000000 can occur.
