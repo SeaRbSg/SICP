@@ -1,0 +1,1 @@
+The protected functions will still access the object's local state 'balance' and amount will be bound each time the procedure is called, so I don't think introducing this change will break anything. It seems like a safe change to me.
