@@ -1,0 +1,8 @@
+(define x 10)
+(define s (make-serializer))
+(parallel-execute (lambda () (set! x ((s (lambda() (* x x))))))
+		  (s (lambda () (set! x (+ x 1)))))
+
+With the serialized execution, the two correct cases can still occur, which are: 101 and 121.
+
+100 can also occur, because between the time 100 is computed and assigned to x, x can be assigned to 11 but then overwritten.
