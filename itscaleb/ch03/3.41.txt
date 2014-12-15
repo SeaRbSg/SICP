@@ -1,0 +1,1 @@
+I don't think that serializing access to balance in this case is an improvement because it is not modifying it. I can't think of a scenario where accessing the balance would not result in a correct response.
