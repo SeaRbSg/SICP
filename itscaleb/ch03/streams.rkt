@@ -39,7 +39,10 @@
 (provide cons-stream
          stream-car
          stream-cdr
-         stream-filter)
+         stream-null?
+         stream-filter
+         the-empty-stream
+         stream-enumerate-interval)
 
 (define stream-tests
   (test-suite
