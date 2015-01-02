@@ -26,6 +26,19 @@
         [else
          (stream-filter pred (stream-cdr stream))]))
 
+(define (stream-map proc . argstreams)
+  (if (stream-null? (car argstreams))
+      the-empty-stream
+      (cons-stream
+       (apply proc (map stream-car argstreams))
+       (apply stream-map
+              (cons proc (map stream-cdr argstreams))))))
+
+(define (stream-ref stream index)
+  (cond [(= index 0) (stream-car stream)]
+        [else
+         (stream-ref (stream-cdr stream) (- index 1))]))
+
 (define stream-null? null?)
 
 (define the-empty-stream '())
@@ -35,6 +48,8 @@
          stream-cdr
          stream-null?
          stream-filter
+         stream-map
+         stream-ref
          the-empty-stream
          stream-enumerate-interval)
 
