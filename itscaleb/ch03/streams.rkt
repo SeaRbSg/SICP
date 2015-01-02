@@ -1,7 +1,7 @@
 #lang racket
 (require rackunit)
 
-(define (cons-stream a b)
+(define-syntax-rule (cons-stream a b)
   (cons a (delay b)))
 
 (define (stream-car stream)
@@ -9,12 +9,6 @@
 
 (define (stream-cdr stream)
   (force (cdr stream)))
-
-(define (force delayed-object)
-  (delayed-object))
-
-(define (delay exp)
-  (lambda () exp))
 
 (define (stream-enumerate-interval low high)
   (cond [(> low high) the-empty-stream]
