@@ -39,6 +39,16 @@
         [else
          (stream-ref (stream-cdr stream) (- index 1))]))
 
+(define (add-streams s1 s2)
+  (stream-map + s1 s2))
+
+(define (mul-streams s1 s2)
+  (stream-map * s1 s2))
+
+(define integers (cons-stream 1 (add-streams ones integers)))
+
+(define ones (cons-stream 1 ones))
+
 (define stream-null? null?)
 
 (define the-empty-stream '())
@@ -51,7 +61,11 @@
          stream-map
          stream-ref
          the-empty-stream
-         stream-enumerate-interval)
+         stream-enumerate-interval
+         add-streams
+         mul-streams
+         ones
+         integers)
 
 (define stream-tests
   (test-suite
